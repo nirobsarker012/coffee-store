@@ -2,9 +2,33 @@ import React from "react";
 import { IoMdEye } from "react-icons/io";
 import { MdEdit } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
+import Swal from "sweetalert2";
+// import { toast } from "sonner";
 
 const CoffeeCard = ({ singleCoff }) => {
-  console.log(singleCoff);
+  // console.log(singleCoff);
+  const handleDelete = (_id) => {
+    console.log(_id);
+    // toast.warning("This is a success toast");
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      console.log(result);
+      if (result.isConfirmed) {
+        // Swal.fire({
+        //   title: "Deleted!",
+        //   text: "Your file has been deleted.",
+        //   icon: "success",
+        // });
+      }
+    });
+  };
   return (
     <div className="flex flex-col gap-1">
       <div className="bg-[#F5F4F1] flex justify-between items-center p-[30px] rounded-[10px]">
@@ -24,15 +48,20 @@ const CoffeeCard = ({ singleCoff }) => {
           </p>
         </div>
         <div className=" flex flex-col gap-1.5">
-          <div className="text-white bg-[#D2B48C] p-[10px] rounded-[5px]">
+          <button className="text-white bg-[#D2B48C] p-[10px] rounded-[5px]">
             <IoMdEye />
-          </div>
-          <div className="text-white bg-[#3C393B] p-[10px] rounded-[5px]">
+          </button>
+          <button className="text-white bg-[#3C393B] p-[10px] rounded-[5px]">
             <MdEdit />
-          </div>
-          <div className="text-white bg-[#EA4744] p-[10px] rounded-[5px]">
+          </button>
+          <button
+            onClick={() => {
+              handleDelete(singleCoff._id);
+            }}
+            className="text-white bg-[#EA4744] p-[10px] rounded-[5px]"
+          >
             <MdDelete />
-          </div>
+          </button>
         </div>
       </div>
     </div>
