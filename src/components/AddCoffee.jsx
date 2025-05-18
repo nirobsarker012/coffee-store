@@ -1,4 +1,5 @@
 import React from "react";
+import Swal from "sweetalert2";
 import { FaArrowLeft } from "react-icons/fa6";
 import { Link } from "react-router";
 
@@ -19,7 +20,14 @@ const AddCoffee = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(`After adding :`, data);
+        if (data.insertedId) {
+          Swal.fire({
+            title: "Coffee Added Successfully",
+            icon: "success",
+            draggable: true,
+          });
+          e.target.reset();
+        }
       });
   };
   return (
@@ -97,13 +105,13 @@ const AddCoffee = () => {
                 </div>
                 {/* Taste */}
                 <div className="flex flex-col space-y-2 raleway mb-3">
-                  <label className="text-[20px] font-semibold">Taste</label>
+                  <label className="text-[20px] font-semibold">Price</label>
                   <input
                     className="bg-white w-full text-[16px] p-[11px] rounded-[5px] border-none outline-none"
                     type="text"
-                    name="taste"
+                    name="price"
                     id=""
-                    placeholder="Enter Coffee taste"
+                    placeholder="Cop of Coffee price"
                   />
                 </div>
                 {/* Category */}
