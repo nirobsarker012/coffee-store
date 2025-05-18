@@ -3,6 +3,25 @@ import { FaArrowLeft } from "react-icons/fa6";
 import { Link } from "react-router";
 
 const AddCoffee = () => {
+  const handleAddCoffee = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const fromData = new FormData(form);
+    const newCoffeeData = Object.fromEntries(fromData.entries());
+    console.log(newCoffeeData);
+    // add server data in client server
+    fetch(`http://localhost:3000/coffees`, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(newCoffeeData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(`After adding :`, data);
+      });
+  };
   return (
     <div className="bg-[url('assets/images/more/11.jpg')] bg-center bg-cover">
       <div className="container">
@@ -13,7 +32,7 @@ const AddCoffee = () => {
           </Link>
         </div>
         {/* Add card body */}
-        <div className="bg-[#F4F3F0] py-[70px] px-[112px] rounded-[5px] mt-[50px]">
+        <div className="bg-[#F4F3F0] py-[70px] px-[112px] rounded-[5px] my-[50px]">
           <div className="flex flex-col items-center justify-center">
             <h2 className="text-[#374151] text-[45px] mb-[32px]">
               Add New Coffee
@@ -26,7 +45,7 @@ const AddCoffee = () => {
             </p>
           </div>
           {/* From Sections */}
-          <form className="w-full">
+          <form onSubmit={handleAddCoffee} id="form" className="w-full">
             <div className="flex gap-[24px] justify-between">
               <div className="flex flex-col w-full">
                 {/* Name */}
@@ -46,7 +65,7 @@ const AddCoffee = () => {
                   <input
                     className="bg-white w-full text-[16px] p-[11px] rounded-[5px] border-none outline-none"
                     type="text"
-                    name="name"
+                    name="supplier"
                     id=""
                     placeholder="Enter Coffee Supplier"
                   />
@@ -57,7 +76,7 @@ const AddCoffee = () => {
                   <input
                     className="bg-white w-full text-[16px] p-[11px] rounded-[5px] border-none outline-none"
                     type="text"
-                    name="name"
+                    name="category"
                     id=""
                     placeholder="Enter Coffee category"
                   />
@@ -71,7 +90,7 @@ const AddCoffee = () => {
                   <input
                     className="bg-white w-full text-[16px] p-[11px] rounded-[5px] border-none outline-none"
                     type="text"
-                    name="name"
+                    name="chef"
                     id=""
                     placeholder="Enter Coffee chef"
                   />
@@ -82,7 +101,7 @@ const AddCoffee = () => {
                   <input
                     className="bg-white w-full text-[16px] p-[11px] rounded-[5px] border-none outline-none"
                     type="text"
-                    name="name"
+                    name="taste"
                     id=""
                     placeholder="Enter Coffee taste"
                   />
@@ -93,7 +112,7 @@ const AddCoffee = () => {
                   <input
                     className="bg-white w-full text-[16px] p-[11px] rounded-[5px] border-none outline-none"
                     type="text"
-                    name="name"
+                    name="details"
                     id=""
                     placeholder="Enter Coffee details"
                   />
