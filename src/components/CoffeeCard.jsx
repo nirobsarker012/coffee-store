@@ -1,12 +1,13 @@
-import React from "react";
 import { IoMdEye } from "react-icons/io";
 import { MdEdit } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
+import { Link } from "react-router";
 import Swal from "sweetalert2";
 // import { toast } from "sonner";
 
 const CoffeeCard = ({ singleCoff }) => {
   // console.log(singleCoff);
+
   const handleDelete = (_id) => {
     console.log(_id);
     // toast.warning("This is a success toast");
@@ -57,17 +58,22 @@ const CoffeeCard = ({ singleCoff }) => {
           </p>
         </div>
         <div className=" flex flex-col gap-1.5">
-          <button className="text-white bg-[#D2B48C] p-[10px] rounded-[5px]">
+          <Link
+            to={`/coffees/${singleCoff._id}`}
+            className="text-white bg-[#D2B48C] p-[10px] rounded-[5px] cursor-pointer"
+          >
             <IoMdEye />
-          </button>
-          <button className="text-white bg-[#3C393B] p-[10px] rounded-[5px]">
-            <MdEdit />
-          </button>
+          </Link>
+          <Link to={`/updateCoffee/${singleCoff._id}`}>
+            <button className="text-white bg-[#3C393B] p-[10px] rounded-[5px] cursor-pointer">
+              <MdEdit />
+            </button>
+          </Link>
           <button
             onClick={() => {
               handleDelete(singleCoff._id);
             }}
-            className="text-white bg-[#EA4744] p-[10px] rounded-[5px]"
+            className="text-white bg-[#EA4744] p-[10px] rounded-[5px] cursor-pointer"
           >
             <MdDelete />
           </button>

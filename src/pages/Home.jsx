@@ -6,6 +6,7 @@ import cup_img from "../assets/images/icons/1.png";
 import award_img from "../assets/images/icons/2.png";
 import grades_img from "../assets/images/icons/3.png";
 import rosting_img from "../assets/images/icons/4.png";
+import { Link } from "react-router";
 
 const Home = () => {
   const { initialCoffee } = useContext(CoffeeContext);
@@ -78,9 +79,12 @@ const Home = () => {
               ---Slip & Savor ---
             </h4>
             <h2 className="text-[#331A15] text-[55px]">Our Popular Products</h2>
-            <button className="inline-flex gap-1 items-center bg-[#E3B577] border border-[#331A15] rounded-[5px] mt-[25px] text-[24px] py-[9px] px-[22px]">
+            <Link
+              to={"/addCoffe"}
+              className="inline-flex gap-1 items-center bg-[#E3B577] border border-[#331A15] rounded-[5px] mt-[25px] text-[24px] py-[9px] px-[22px]"
+            >
               Add Coffee <BsCupHotFill />
-            </button>
+            </Link>
           </div>
         </div>
         <div className="container mt-[48px] grid grid-cols-2 justify-around gap-6 max-w-[648px]">

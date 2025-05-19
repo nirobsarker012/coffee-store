@@ -3,6 +3,7 @@ import Root from "../layout/Root";
 import Home from "../pages/Home";
 import AddCoffee from "../components/AddCoffee";
 import UpdateCoffe from "../components/UpdateCoffe";
+import CardDetails from "../components/CardDetails";
 
 export const router = createBrowserRouter([
   {
@@ -18,7 +19,11 @@ export const router = createBrowserRouter([
         Component: AddCoffee,
       },
       {
-        path: "updateCoffee",
+        path: "/coffees/:jodu",
+        Component: CardDetails,
+      },
+      {
+        path: "updateCoffee/:id",
         Component: UpdateCoffe,
       },
     ],
